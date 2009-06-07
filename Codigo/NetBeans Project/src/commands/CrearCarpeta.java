@@ -26,7 +26,7 @@ public class CrearCarpeta implements Command {
     public void execute() throws FileNotFoundException{
         if (!carpeta.exists()) {
             if(!carpeta.mkdir()){
-                throw new FileNotFoundException("Ruta o Carpeta Invalida, La carpeta no pudo ser Creada");
+                throw new FileNotFoundException("Ruta o Carpeta Invalida, La carpeta: "+carpeta.getAbsolutePath()+" no pudo ser Creada");
             }
         }
     }
