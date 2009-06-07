@@ -5,6 +5,7 @@
 package commands;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -23,30 +24,13 @@ public class CrearCarpeta implements Command {
         this.carpeta = carpeta;
     }
 
-    public boolean execute() {
+    public void execute() {
         if (!carpeta.exists()) {
-           try{
-                carpeta.mkdir();
-                return true;
-            }catch(Exception e){
-                lastException=e;
-                return false;
-            }
-        } else {
-                 return true;//Toca revizarlo
+            carpeta.mkdir();
         }
     }
 
-    public boolean undo() {
-        if (carpeta.exists()) {
-            carpeta.delete();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public Exception getLastException() {
-        return lastException;
+    public void undo() throws FileNotFoundException {
+        Eliminadora.deleteFile(carpeta);
     }
 }
