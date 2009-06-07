@@ -11,34 +11,34 @@ import java.io.File;
  * @author LAQ
  */
 public abstract class CrearAccesoDirecto implements Command {
-    private File executable;
-    private File lugarDelAcceso;
+    private File nombreDelAcceso;
+    private File lugarDondeApunta;
 
     /**
-     * @return the executable
+     * @return the nombreDelAcceso
      */
     public File getExecutable() {
-        return executable;
+        return nombreDelAcceso;
     }
 
     /**
-     * @param executable the executable to set
+     * @param nombreDelAcceso the nombreDelAcceso to set
      */
     public void setExecutable(File executable) {
-        this.executable = executable;
+        this.nombreDelAcceso = executable;
     }
 
     /**
-     * @return the lugarDelAcceso
+     * @return the lugarDondeApunta
      */
     public File getLugarDelAcceso() {
-        return lugarDelAcceso;
+        return lugarDondeApunta;
     }
 
     /**
-     * @param lugarDelAcceso the lugarDelAcceso to set
+     * @param lugarDondeApunta the lugarDondeApunta to set
      */
     public void setLugarDelAcceso(File lugarDelAcceso) {
-        this.lugarDelAcceso = lugarDelAcceso;
+        this.lugarDondeApunta = lugarDelAcceso;
     }
 }
