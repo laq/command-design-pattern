@@ -14,7 +14,6 @@ import java.io.FileNotFoundException;
 public class CrearCarpeta implements Command {
 
     private File carpeta;
-    private Exception lastException;
 
     /**
      * Constructor de la clase que recive la direccion de la carpeta File
@@ -24,9 +23,11 @@ public class CrearCarpeta implements Command {
         this.carpeta = carpeta;
     }
 
-    public void execute() {
+    public void execute() throws FileNotFoundException{
         if (!carpeta.exists()) {
-            carpeta.mkdir();
+            if(!carpeta.mkdir()){
+                throw new FileNotFoundException("Ruta o Carpeta Invalida, La carpeta no pudo ser Creada");
+            }
         }
     }
 
