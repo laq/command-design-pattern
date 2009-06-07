@@ -7,13 +7,9 @@ package commands;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.nio.channels.FileChannel;
 
 /**
  *
@@ -37,25 +33,18 @@ public class CopiarArchivo implements Command {
     }
 
     /**
-     *
+     *  Ejecuta la copia de un archivo a otro
      */
     public boolean execute() {
-        // crea los archivos
-        InputStream in = null;
-        OutputStream out = null;
-        try {
-            in = new FileInputStream(nombre_archivo_origen);
-            out = new FileOutputStream(nombre_archivo_destino);
-            byte[] buf = new byte[1024];
-            int len;
-            while ((len = in.read(buf)) > 0) {
-                out.write(buf, 0, len);
-            }
-            in.close();
-            out.close();
-        } catch (FileNotFoundException ex) {
-            return false;
-        } catch (IOException ioex) {
+        try{
+            FileInputStream fis = new FileInputStream(nombre_archivo_origen);
+            FileOutputStream fos = new FileOutputStream(nombre_archivo_destino);
+            FileChannel canalFuente = fis.getChannel();
+            FileChannel canalDestino = fos.getChannel();
+            canalFuente.transferTo(0, canalFuente.size(), canalDestino);
+            fis.close();
+            fos.close();
+        }catch (IOException ex) {
             return false;
         }
         return true;
