@@ -26,8 +26,20 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
     }
 
     public void execute() throws IOException{
+        String a = System.getProperty("user.home");
+        System.out.println(a);
+        Process pat;
+        pat = Runtime.getRuntime().exec("env | egrep LANG");
+        BufferedReader Resultset = new BufferedReader(
+                        new InputStreamReader (
+                        pat.getInputStream()));
+
+        String line;
+        while ((line = Resultset.readLine()) != null) {
+                System.out.println(line);
+                }
         // verifica existencia de carpeta Escritorio
-        File usr_bin = new File ("/usr/bin");
+        /*File usr_bin = new File ("/usr/bin");
         File bin = new File ("/bin");
 
         File nueva = new File ("/usr/bin/nueva");
@@ -38,7 +50,7 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
             nueva.createNewFile();
         } else {
             pat = Runtime.getRuntime().exec("echo $PATH");
-        }
+        }*/
 
         /*BufferedReader Resultset = new BufferedReader(
                         new InputStreamReader (
