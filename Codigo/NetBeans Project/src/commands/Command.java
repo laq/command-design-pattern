@@ -7,11 +7,13 @@ package commands;
 
 public interface Command
 {
-    /** El método que se llama para que el comando sea ejecutado */
-
+    /**
+     * El método que se llama para que el comando sea ejecutado
+     */
     public void execute();
 
-    /** El método que se llama para que el comando sea deshecho */
-    
+    /**
+     * El método que se llama para que el comando sea deshecho
+     */
     public void undo();
 }
