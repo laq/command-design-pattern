@@ -9,25 +9,15 @@ public interface Command
 {
     /** El método que se llama para que el comando sea ejecutado
      *
-     *  @return Un valor booleano. Verdadero si la ejecución fue exitosa,
-     *  falso si falló.
+     *  @throws Exception Si la ejecución del comando falla.
      */
 
-    public boolean execute();
+    public void execute() throws Exception;
 
     /** El método que se llama para que el comando sea deshecho
-     *
-     *  @return Un valor booleano. Verdadero si la ejecución fue exitosa,
-     *  falso si falló.
+     * 
+     *  @throws Exception Si al intentar deshacer el comando se produce un error.
      */
 
-    public boolean undo();
-
-    /** Devuelve la última excepción ocurrida durante la ejecución del comando.
-     *  Si no se produjo ninguna excepción devuelve null.
-     *
-     *  @return La última excepción ocurrida.
-     */
-
-    public Exception getLastException();
+    public void undo() throws Exception;
 }
