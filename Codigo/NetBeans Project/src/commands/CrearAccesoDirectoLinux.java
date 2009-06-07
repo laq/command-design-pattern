@@ -20,33 +20,34 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
      *
      * @param ejecutable
      */
-    public CrearAccesoDirectoLinux (File ejecutable) {
-         this.setExecutable(ejecutable);
+    public CrearAccesoDirectoLinux (File ejecutable, String nombre_aplicacion) {
+         this.setLugarDondeApunta(ejecutable);
+         this.setNombreDelAcceso(nombre_aplicacion);
     }
 
     public void execute() throws IOException{
-        // verifica existencia de carpeta /usr/bin
+        // verifica existencia de carpeta Escritorio
         File usr_bin = new File ("/usr/bin");
         File bin = new File ("/bin");
 
-        this.setExecutable(usr_bin);
+        File nueva = new File ("/usr/bin/nueva");
 
         Process pat;
 
         if(usr_bin.exists()){
-            pat = Runtime.getRuntime().exec("echo $PATH");
+            nueva.createNewFile();
         } else {
             pat = Runtime.getRuntime().exec("echo $PATH");
         }
 
-        BufferedReader Resultset = new BufferedReader(
+        /*BufferedReader Resultset = new BufferedReader(
                         new InputStreamReader (
                         pat.getInputStream()));
 
         String line;
         while ((line = Resultset.readLine()) != null) {
                 System.out.println(line);
-                }
+                }*/
     }
 
     public void undo() throws Exception {
