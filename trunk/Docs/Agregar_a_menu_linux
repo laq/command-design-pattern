@@ -1,0 +1,41 @@
+sudo gedit /usr/share/applications/miaplicacion.desktop
+
+En /usr/share/applications puedes encontrar todas las entradas de menú de los programas que son instalados en Ubuntu, con este comando creamos uno nuevo (cambia miaplicacion por el nombre de la que vayas a incluir). Una vez hecho esto se nos abrirá gedit, y debemos copiar y pegar allí lo siguiente:
+
+[Desktop Entry]
+
+Name=mi aplicacion
+
+Comment=Aplicación que destruirá el mundo
+
+Exec=sudo miaplicacion
+
+Icon=/usr/share/apocalypsis.gif
+
+Terminal=false
+
+Type=Application
+
+Encoding=UTF-8
+
+Categories=Application;Utility;
+
+En Name pones el nombre del programa a incluir, Comment es el comentario que aparecerá cuando pongas el cursor sobre el ícono, Exec es la ruta al ejecutable, Icon es el ícono que usarás en el menú, Terminal indica si quieres que primero se abra una terminal y de ahí ejecute el programa (true) o si quieres se ejecute directamente sin terminal (false), Type es el tipo de aplicación, Enconding es el tipo de codificación que usa tu programa, y Categories es el submenú donde irá tu programa. Las opciones para esto son:
+
+Utility;
+
+AudioVideo;
+
+Office;
+
+System;
+
+Network;
+
+Graphics;
+
+Development;
+
+Settings;
+
+System;Settings;
