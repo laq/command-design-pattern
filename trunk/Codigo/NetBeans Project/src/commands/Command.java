@@ -7,13 +7,27 @@ package commands;
 
 public interface Command
 {
-    /**
-     * El método que se llama para que el comando sea ejecutado
+    /** El método que se llama para que el comando sea ejecutado
+     *
+     *  @return Un valor booleano. Verdadero si la ejecución fue exitosa,
+     *  falso si falló.
      */
-    public void execute();
 
-    /**
-     * El método que se llama para que el comando sea deshecho
+    public boolean execute();
+
+    /** El método que se llama para que el comando sea deshecho
+     *
+     *  @return Un valor booleano. Verdadero si la ejecución fue exitosa,
+     *  falso si falló.
      */
-    public void undo();
+
+    public boolean undo();
+
+    /** Devuelve la última excepción ocurrida durante la ejecución del comando.
+     *  Si no se produjo ninguna excepción devuelve null.
+     *
+     *  @return La última excepción ocurrida.
+     */
+
+    public Exception getLastException();
 }
