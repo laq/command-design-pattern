@@ -15,13 +15,14 @@ import java.io.InputStreamReader;
  */
 public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
 
-    public CrearAccesoDirectoWindows(File ejecutable,File lugarDelAcceso){
-        setExecutable(ejecutable);
-        setLugarDelAcceso(lugarDelAcceso);
+    public CrearAccesoDirectoWindows(String nombre,File lugarDelAcceso){
+        setNombreDelAcceso(nombre);
+        setLugarDondeApunta(lugarDelAcceso);
     }
 
     public void execute() throws Exception {
-        Process p=Runtime.getRuntime().exec("mkdir 1");
+        String home=System.getProperty("user.home");
+        Process p=Runtime.getRuntime().exec("mkdir "+home+"/");
            BufferedReader reader = new BufferedReader(
                         new InputStreamReader (
                         p.getInputStream()));
