@@ -48,20 +48,24 @@ public class CrearCarpetaTest {
     public void testExecute() {
         try {
             System.out.println("execute");
-            //prueba valida
-            CrearCarpeta instance = new CrearCarpeta(new File("/XXX"));
+            //prueba invalida
+            System.out.println("    invalido");
+            CrearCarpeta instance = new CrearCarpeta(new File(""));
             instance.execute();
-            //prueba  invalida
-            instance = new CrearCarpeta(new File("XXX/"));
-            instance.execute();
-            // TODO review the generated test code and remove the default call to fail.
-            //fail("The test case is a prototype.");
         } catch (FileNotFoundException ex) {
-            System.out.println("Exc"+ex);
+            System.out.println("    Exc"+ex);
+            //Logger.getLogger(CrearCarpetaTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //prueba  valida
+        System.out.println("    valido");
+        try {
+            CrearCarpeta  instance = new CrearCarpeta(new File("XXX/"));
+            instance.execute();
+        } catch (FileNotFoundException ex) {
+            fail(ex.getMessage());
             Logger.getLogger(CrearCarpetaTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
