@@ -45,7 +45,7 @@ public class CrearAccesoDirectoLinuxTest {
     public void testExecute() throws Exception {
         System.out.println("execute");
         File f = new File("/home/david/Escritorio/Tareas Pendientes");
-        CrearAccesoDirectoLinux instance = new CrearAccesoDirectoLinux(f);
+        CrearAccesoDirectoLinux instance = new CrearAccesoDirectoLinux(f, "hola");
         instance.execute();
         // TODO review the generated test code and remove the default call to fail.
     }
