@@ -34,4 +34,8 @@ public class CrearCarpeta implements Command {
     public void undo() throws FileNotFoundException {
         Eliminadora.deleteFile(carpeta);
     }
+    @Override
+    public String toString(){
+        return carpeta.toString();
+    }
 }
