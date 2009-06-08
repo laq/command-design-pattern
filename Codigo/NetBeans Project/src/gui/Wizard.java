@@ -70,7 +70,7 @@ public class Wizard extends javax.swing.JFrame {
         }
 
         osName = System.getProperty("os.name");
-        
+        System.out.println(osName);
     }
 
     /** This method is called from within the constructor to
@@ -189,6 +189,7 @@ public class Wizard extends javax.swing.JFrame {
                 if(setupData.getLicence() != null)
                 {
                     backPanel.add(licence);
+                    next.setText("Acepto");
                     currentState = WizardState.Licence;
                 }
                 else
@@ -203,6 +204,7 @@ public class Wizard extends javax.swing.JFrame {
             case Licence:
                 backPanel.removeAll();
                 backPanel.add(location);
+                next.setText("Siguiente");
                 backPanel.updateUI();
 
                 currentState = WizardState.Location;
@@ -261,6 +263,7 @@ public class Wizard extends javax.swing.JFrame {
             case Licence:
                 backPanel.removeAll();
                 backPanel.add(welcome);
+                next.setText("Siguiente");
                 backPanel.updateUI();
 
                 back.setVisible(false);
@@ -273,6 +276,7 @@ public class Wizard extends javax.swing.JFrame {
                 if(setupData.getLicence() != null)
                 {
                     backPanel.add(licence);
+                    next.setText("Acepto");
                     currentState = WizardState.Licence;
                 }
                 else
