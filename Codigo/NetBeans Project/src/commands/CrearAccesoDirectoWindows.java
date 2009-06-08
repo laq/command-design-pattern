@@ -22,10 +22,13 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
 
     public void execute() throws Exception {
         String home=System.getProperty("user.home");
-        Process p=Runtime.getRuntime().exec("mkdir "+home+"/");
+        System.out.println(home+"\\Escritorio\\hola");
+        Process p=Runtime.getRuntime().exec("dir.exe");
+        System.out.println(p);
            BufferedReader reader = new BufferedReader(
                         new InputStreamReader (
                         p.getInputStream()));
+           System.out.println(reader);
           String line;
         while ((line = reader.readLine()) != null) {
                 System.out.println(line);
