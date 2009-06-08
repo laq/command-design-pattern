@@ -11,11 +11,11 @@
 
 package gui;
 
-import javax.swing.JFileChooser;
+import core.SetupData;
 
-/**
+/** Ventana principal del asistente de instalación.
  *
- * @author Sergio
+ *  @author Sergio
  */
 public class Wizard extends javax.swing.JFrame {
 
@@ -23,19 +23,23 @@ public class Wizard extends javax.swing.JFrame {
         Welcome, Licence, Location, Shortcut, Copying, Finished;
     }
 
-    WizardState currentState;
+    private WizardState currentState;
 
-    WelcomePanel welcome;
-    LicencePanel licence;
-    LocationPanel location;
-    ShortcutPanel shortcut;
-    CopyingPanel copying;
-    FinishedPanel finished;
+    private WelcomePanel welcome;
+    private LicencePanel licence;
+    private LocationPanel location;
+    private ShortcutPanel shortcut;
+    private CopyingPanel copying;
+    private FinishedPanel finished;
+
+    private SetupData setupData;
     
     /** Creates new form WizardWelcome */
     public Wizard() {
         initComponents();
 
+        this.setLocationRelativeTo(null);
+        
         welcome = new WelcomePanel();
         licence = new LicencePanel();
         location = new LocationPanel();
@@ -47,6 +51,26 @@ public class Wizard extends javax.swing.JFrame {
         back.setVisible((false));
 
         currentState = WizardState.Welcome;
+    }
+
+    public void setSetupData(SetupData setupData)
+    {
+        String osName;
+        
+        this.setupData = setupData;
+        this.setTitle("Programa de instalación de " + setupData.getApplicationName());
+        this.topTitle.setText("Programa de instalación de " + setupData.getApplicationName());
+        this.topTip.setText("Bienvenido al programa de instalación de " + setupData.getApplicationName() +
+            ". Este programa le guiará durante el proceso de instalación.");
+        this.welcome.setApplicationName(setupData.getApplicationName());
+
+        if(setupData.getLicence() != null)
+        {
+            this.licence.setLicence(setupData.getLicence());
+        }
+
+        osName = System.getProperty("os.name");
+        
     }
 
     /** This method is called from within the constructor to
@@ -161,11 +185,19 @@ public class Wizard extends javax.swing.JFrame {
         {
             case Welcome:
                 backPanel.removeAll();
-                backPanel.add(licence);
+
+                if(setupData.getLicence() != null)
+                {
+                    backPanel.add(licence);
+                    currentState = WizardState.Licence;
+                }
+                else
+                {
+                    backPanel.add(location);
+                    currentState = WizardState.Location;
+                }
                 backPanel.updateUI();
-                
                 back.setVisible(true);
-                currentState = WizardState.Licence;
                 break;
                 
             case Licence:
@@ -178,10 +210,21 @@ public class Wizard extends javax.swing.JFrame {
 
             case Location:
                 backPanel.removeAll();
-                backPanel.add(shortcut);
-                backPanel.updateUI();
 
-                currentState = WizardState.Shortcut;
+                if(setupData.getShortcut())
+                {
+                    backPanel.add(shortcut);
+                    currentState = WizardState.Shortcut;
+                }
+                else
+                {
+                    backPanel.add(copying);
+                    currentState = WizardState.Copying;
+                    back.setVisible(false);
+                    next.setVisible(false);
+                }
+                
+                backPanel.updateUI();
                 break;
 
             case Shortcut:
@@ -226,10 +269,19 @@ public class Wizard extends javax.swing.JFrame {
 
             case Location:
                 backPanel.removeAll();
-                backPanel.add(licence);
-                backPanel.updateUI();
 
-                currentState = WizardState.Licence;
+                if(setupData.getLicence() != null)
+                {
+                    backPanel.add(licence);
+                    currentState = WizardState.Licence;
+                }
+                else
+                {
+                    backPanel.add(welcome);
+                    currentState = WizardState.Welcome;
+                }
+                
+                backPanel.updateUI();
                 break;
 
             case Shortcut:
