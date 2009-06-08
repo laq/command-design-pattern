@@ -22,6 +22,16 @@ public class LicencePanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    /** Establece el texto de licencia que debe ser mostrado en el recuadro.
+     *
+     *  @param licence El texto de la licencia.
+     */
+    
+    public void setLicence(String licence)
+    {
+        licenceText.setText(licence);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -33,20 +43,19 @@ public class LicencePanel extends javax.swing.JPanel {
 
         licenceTip = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        licenceText = new javax.swing.JTextArea();
 
         licenceTip.setText("Por favor lea con atención el siguiente contrato de licencia");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setEditable(false);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        licenceText.setColumns(20);
+        licenceText.setEditable(false);
+        licenceText.setRows(5);
+        jScrollPane1.setViewportView(licenceText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -56,7 +65,6 @@ public class LicencePanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(licenceTip)
@@ -69,7 +77,7 @@ public class LicencePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea licenceText;
     private javax.swing.JLabel licenceTip;
     // End of variables declaration//GEN-END:variables
 

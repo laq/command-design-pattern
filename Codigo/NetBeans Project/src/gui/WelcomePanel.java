@@ -22,6 +22,18 @@ public class WelcomePanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    /** Establece el nombre de la apliación para que el Panel sepa que mostrar
+     *  en la primera etiqueta.
+     *
+     *  @param applicationName El nombre de la apliación.
+     */
+
+    public void setApplicationName(String applicationName)
+    {
+        this.welcomeTip1.setText("Bienvenido al programa de instalación de " + applicationName +
+                ". Este programa le guiará durante el proceso de instalación.");
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -38,7 +50,7 @@ public class WelcomePanel extends javax.swing.JPanel {
 
         welcomeTip1.setText("Bienvenido al programa de instalación de , este programa le guiará durante el proceso de instalación.");
 
-        welcomeTip2.setText("Haga clic en siguiente para comenzar.");
+        welcomeTip2.setText("Haga clic en Siguiente para comenzar.");
 
         welcomeTip3.setText("Una vez empezado el asistente puede hacer clic en el botón Atrás en cualquier momento para corregir información");
 
@@ -48,7 +60,6 @@ public class WelcomePanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -60,7 +71,6 @@ public class WelcomePanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(welcomeTip1)
