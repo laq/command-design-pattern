@@ -74,9 +74,9 @@ public class CrearCarpetaTest {
     @Test
     public void testUndo() throws Exception {
         System.out.println("undo");
-        CrearCarpeta instance = new CrearCarpeta(new File("XXX/"));;
+        CrearCarpeta instance = new CrearCarpeta(new File("XXX/"));
         instance.undo();
-        // TODO review the generated test code and remove the default call to fail.
+       
         //fail("The test case is a prototype.");
     }
 
