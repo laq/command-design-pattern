@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Administrador
+ * @author LAQ
  */
 public class test {
 
@@ -19,7 +19,8 @@ public class test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("pinpon",new File("C:\\hola"));
+        String notepad="C:\\Archivos de programa\\Notepad++\\notepad++.exe";
+         CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("SuperNotepad",new File(notepad));
         try {
             instance.execute();
         } catch (Exception ex) {
