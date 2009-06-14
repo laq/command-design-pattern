@@ -44,7 +44,7 @@ public class CrearAccesoDirectoWindowsTest {
     @Test
     public void testExecute() throws Exception {
         System.out.println("execute");
-        CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("pinpon",new File("C:\\hola"));
+        CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("pinpon",new File("C:\\hola"),true,true);
 
         instance.execute();
         
