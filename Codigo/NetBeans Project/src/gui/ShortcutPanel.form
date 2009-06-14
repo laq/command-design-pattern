@@ -19,13 +19,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="shortcutTip" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                      <Component id="shortcut" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="programsShortcut" alignment="0" max="32767" attributes="1"/>
+                          <Component id="desktopShortcut" alignment="0" max="32767" attributes="1"/>
+                      </Group>
                   </Group>
-                  <Component id="shortcutTip" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="273" max="32767" attributes="0"/>
+              <EmptySpace pref="242" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -35,8 +38,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="shortcutTip" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="shortcut" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="245" max="32767" attributes="0"/>
+              <Component id="desktopShortcut" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="programsShortcut" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="222" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,9 +52,14 @@
         <Property name="text" type="java.lang.String" value="&#xbf;Desea crear un acceso directo en el escritorio?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="shortcut">
+    <Component class="javax.swing.JCheckBox" name="desktopShortcut">
       <Properties>
         <Property name="text" type="java.lang.String" value="Crear acceso directo en el escritorio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="programsShortcut">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Crear acceso directo en el men&#xfa; de programas"/>
       </Properties>
     </Component>
   </SubComponents>

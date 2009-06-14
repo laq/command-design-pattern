@@ -19,9 +19,12 @@ public class SetupData
     /** El nombre de la carpeta de destino */
     private String destinationFolder;
 
-    /** Si se debe dar al usuario la opción de crear un acceso directo */
-    private boolean shortcut;
+    /** Si se debe dar al usuario la opción de crear un acceso directo en el escritorio */
+    private boolean desktopShortcut;
 
+    /** Si se debe dar al usuario la opción de crear un acceso directo en el menú de programas */
+    private boolean programsShortcut;
+    
     /** La lista de archivos para copiar */
     List<String> filesToCopy;
 
@@ -85,7 +88,7 @@ public class SetupData
      *  @return Un valo boleano.
      */
     
-    public boolean getShortcut() { return shortcut; }
+    public boolean getDesktopShortcut() { return desktopShortcut; }
 
     /** Establece un valor boleano que determina si se debe ofrecer o no al
      *  usuario la posilbidad de crear un acceso directo para la apliación en
@@ -94,7 +97,7 @@ public class SetupData
      *  @param shortcut El valor boleano.
      */
 
-    public void setShortcut(boolean shortcut) { this.shortcut = shortcut; }
+    public void setDesktopShortcut(boolean shortcut) { this.desktopShortcut = shortcut; }
 
     /** Devuelve una referencia a la lista de archivos que deben ser copiads.
      * 
@@ -102,4 +105,30 @@ public class SetupData
      */
 
     public List<String> getFilesToCopy() { return filesToCopy; }
+
+    /** Devuelve un booleano que indica si se debe ofrecer al usuario la opción
+     *  de crear un acceso directo en el menú de programas.
+     *
+     *  @return Un valor booleano.
+     */
+
+    public boolean getProgramsShortcut() { return programsShortcut; }
+
+    /** Establece un valor boleano que determina si se debe ofrecer o no al
+     *  usuario la posiblidad de crear un acceso directo para la apliación en
+     *  el menú de programas.
+     *
+     *  @param programsShortcut El valor booleano.
+     */
+    
+    public void setProgramsShortcut(boolean programsShortcut) { this.programsShortcut = programsShortcut; }
+
+    /** Devuelve un valor booleano que determina si se le debe ofrecer al usuario
+     *  la opción de crear un acceso directo al programa que está siendo instalado
+     *  sea en el escritorio o en el menú de programas
+     *
+     *  @return El valor booleano
+     */
+    
+    public boolean getShortcut() { return desktopShortcut || programsShortcut; }
 }

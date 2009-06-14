@@ -22,6 +22,13 @@ public class LocationPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    /** Establece el texto que debe mostrarse en la casilla de carpeta de destino
+     * 
+     *  @param folder La ruta de la carpeta de destino.
+     */
+
+    public void setDestinationFolder(String folder) { this.locationText.setText(folder); }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -74,7 +81,6 @@ public class LocationPanel extends javax.swing.JPanel {
     private void locationBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationBrowseActionPerformed
 
 }//GEN-LAST:event_locationBrowseActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton locationBrowse;

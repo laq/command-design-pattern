@@ -56,7 +56,10 @@ public class Wizard extends javax.swing.JFrame {
     public void setSetupData(SetupData setupData)
     {
         String osName;
-        
+        String homeFolder;
+        String destinationFolder;
+        String osPathSeparator;
+                
         this.setupData = setupData;
         this.setTitle("Programa de instalación de " + setupData.getApplicationName());
         this.topTitle.setText("Programa de instalación de " + setupData.getApplicationName());
@@ -70,7 +73,23 @@ public class Wizard extends javax.swing.JFrame {
         }
 
         osName = System.getProperty("os.name");
-        System.out.println(osName);
+        osName = osName.toLowerCase();
+
+        if(osName.startsWith("windows"))
+            destinationFolder = "C:\\Archivos de Programa\\" + setupData.getDestinationFolder();
+
+        else if(osName.startsWith("linux"))
+            destinationFolder = "/usr/local/share/" + setupData.getDestinationFolder();
+
+        else
+        {
+            homeFolder = System.getProperty("user.home");
+            osPathSeparator = System.getProperty("file.separator");
+            destinationFolder = homeFolder + osPathSeparator + setupData.getDestinationFolder();
+        }
+
+        this.location.setDestinationFolder(destinationFolder);
+        
     }
 
     /** This method is called from within the constructor to

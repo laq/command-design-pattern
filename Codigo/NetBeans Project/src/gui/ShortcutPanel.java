@@ -32,11 +32,14 @@ public class ShortcutPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         shortcutTip = new javax.swing.JLabel();
-        shortcut = new javax.swing.JCheckBox();
+        desktopShortcut = new javax.swing.JCheckBox();
+        programsShortcut = new javax.swing.JCheckBox();
 
         shortcutTip.setText("¿Desea crear un acceso directo en el escritorio?");
 
-        shortcut.setText("Crear acceso directo en el escritorio");
+        desktopShortcut.setText("Crear acceso directo en el escritorio");
+
+        programsShortcut.setText("Crear acceso directo en el menú de programas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -45,11 +48,13 @@ public class ShortcutPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(shortcutTip)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(shortcut))
-                    .addComponent(shortcutTip))
-                .addContainerGap(273, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(programsShortcut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(desktopShortcut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,14 +62,17 @@ public class ShortcutPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(shortcutTip)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(shortcut)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addComponent(desktopShortcut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(programsShortcut)
+                .addContainerGap(222, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox shortcut;
+    private javax.swing.JCheckBox desktopShortcut;
+    private javax.swing.JCheckBox programsShortcut;
     private javax.swing.JLabel shortcutTip;
     // End of variables declaration//GEN-END:variables
 
