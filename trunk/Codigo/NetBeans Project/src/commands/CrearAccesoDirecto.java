@@ -13,6 +13,8 @@ import java.io.File;
 public abstract class CrearAccesoDirecto implements Command {
     private String nombreDelAcceso;
     private File lugarDondeApunta;
+    private boolean escritorio;
+    private boolean menuProgramas;
 
     /**
      * @return the nombreDelAcceso
@@ -40,6 +42,34 @@ public abstract class CrearAccesoDirecto implements Command {
      */
     public void setLugarDondeApunta(File lugarDondeApunta) {
         this.lugarDondeApunta = lugarDondeApunta;
+    }
+
+    /**
+     * @return the escritorio
+     */
+    public boolean isEscritorio() {
+        return escritorio;
+    }
+
+    /**
+     * @param escritorio the escritorio to set
+     */
+    public void setEscritorio(boolean escritorio) {
+        this.escritorio = escritorio;
+    }
+
+    /**
+     * @return the menuProgramas
+     */
+    public boolean isMenuProgramas() {
+        return menuProgramas;
+    }
+
+    /**
+     * @param menuProgramas the menuProgramas to set
+     */
+    public void setMenuProgramas(boolean menuProgramas) {
+        this.menuProgramas = menuProgramas;
     }
 
    
