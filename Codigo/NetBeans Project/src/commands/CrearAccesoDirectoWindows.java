@@ -7,13 +7,10 @@ package commands;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -21,9 +18,11 @@ import java.util.regex.Pattern;
  */
 public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
 
-    public CrearAccesoDirectoWindows(String nombre, File lugarDelAcceso) {
+    public CrearAccesoDirectoWindows(String nombre, File lugarDelAcceso,boolean escritorio,boolean menuProgramas) {
         setNombreDelAcceso(nombre);
         setLugarDondeApunta(lugarDelAcceso);
+        setEscritorio(escritorio);
+        setMenuProgramas(menuProgramas);
     }
     public void verProperties(){
         Properties p=System.getProperties();
@@ -53,7 +52,8 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
          os.close();
          //System.out.println(or.getAbsolutePath());
         String home = System.getProperty("user.home");
-        String desktop=DesktopFilter.findDesktop(home,fileSep);
+        //String desktop=DesktopFilter.findDesktop(home,fileSep);
+        String desktop="~$folder.desktop$";//tomado de la ayuda de nircmd
 
         //nirmcd.exe shortcut "x:\el_nombre_de_programa" "path_donde_se_copiara_el_acceso_directo" "Nombre_nuevo_de_acceso_directo"
         //Se crea la orden con el .exe la orden y la direccion del programa
