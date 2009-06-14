@@ -18,11 +18,22 @@ public class test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        testMenu();
     }
 
     public static void testEscritorio() {
         String notepad = "C:\\Archivos de programa\\Notepad++\\notepad++.exe";
-        CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("SuperNotepad", new File(notepad),true,true);
+        CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("SuperNotepad", new File(notepad),true,false);
+        try {
+            instance.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void testMenu() {
+        String notepad = "C:\\Archivos de programa\\Notepad++\\notepad++.exe";
+        CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("SuperNotepad", new File(notepad),false,true);
         try {
             instance.execute();
         } catch (Exception ex) {
