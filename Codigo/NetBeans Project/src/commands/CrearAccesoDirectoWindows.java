@@ -53,7 +53,7 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
          os.close();
          //System.out.println(or.getAbsolutePath());
         String home = System.getProperty("user.home");
-        String desktop=findDesktop(home,fileSep);
+        String desktop=DesktopFilter.findDesktop(home,fileSep);
 
         //nirmcd.exe shortcut "x:\el_nombre_de_programa" "path_donde_se_copiara_el_acceso_directo" "Nombre_nuevo_de_acceso_directo"
         //Se crea la orden con el .exe la orden y la direccion del programa
@@ -75,28 +75,9 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
 
     }
 
-    public String findDesktop(String home,String fileSep){
-        File casa=new File(home);
-        File []lista=casa.listFiles(new MyNameFilter());
-        if(lista.length==1){
-            System.out.println("Desktop:"+lista[0].getAbsolutePath());
-            return lista[0].getAbsolutePath();
-        }else{
-            return "NO DESKTOP";
-        }
-
-    }
-
-    class MyNameFilter implements FilenameFilter {
-
-        public boolean accept(File dir, String name) {
-            Pattern p = Pattern.compile("Escritorio|Desktop");
-            Matcher m = p.matcher(name);
-            return m.matches();
-        }
 
 
-    }
+  
 //    public void copiar(){
 //        try {
 //            FileInputStream fis = new FileInputStream();
