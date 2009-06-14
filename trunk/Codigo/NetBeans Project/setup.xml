@@ -35,11 +35,20 @@ Copyright (C) 1989, 1991 Free Software Foundation, Inc.
 
 675 Mass Ave, Cambridge, MA 02139, EEUU
 
-Se permite la copia y distribución de copias literales de este documento, pero no se permite su modificación.
+Se permite la copia y distribución de copias literales de este documento, pero
+no se permite su modificación.
 
 PREÁMBULO
 
-Las licencias que cubren la mayor parte del software están diseñadas para quitarle a usted la libertad de compartirlo y modificarlo. Por el contrario, la Licencia Pública General de GNU pretende garantizarle la libertad de compartir y modificar software libre, para asegurar que el software es libre para todos sus usuarios. Esta Licencia Pública General se aplica a la mayor parte del software del la Free Software Foundation y a cualquier otro programa si sus autores se comprometen a utilizarla. (Existe otro software de la Free Software Foundation que está cubierto por la Licencia Pública General de GNU para Bibliotecas). Si quiere, también puede aplicarla a sus propios programas.
+Las licencias que cubren la mayor parte del software están diseñadas para
+quitarle a usted la libertad de compartirlo y modificarlo. Por el contrario, la
+Licencia Pública General de GNU pretende garantizarle la libertad de compartir
+y modificar software libre, para asegurar que el software es libre para todos
+sus usuarios. Esta Licencia Pública General se aplica a la mayor parte del
+software del la Free Software Foundation y a cualquier otro programa si sus
+autores se comprometen a utilizarla. (Existe otro software de la Free Software
+Foundation que está cubierto por la Licencia Pública General de GNU para
+Bibliotecas). Si quiere, también puede aplicarla a sus propios programas.
 
 Cuando hablamos de software libre, estamos refiriéndonos a libertad, no a precio. Nuestras Licencias Públicas Generales están diseñadas para asegurarnos de que tenga la libertad de distribuir copias de software libre (y cobrar por ese servicio si quiere), de que reciba el código fuente o que pueda conseguirlo si lo quiere, de que pueda modificar el software o usar fragmentos de él en nuevos programas libres, y de que sepa que puede hacer todas estas cosas.
 
@@ -103,8 +112,9 @@ AUSENCIA DE GARANTÍA
   12. Como el programa se licencia libre de cargas, no se ofrece ninguna garantía sobre el programa, en todas la extensión permitida por la legislación aplicable. Excepto cuando se indique de otra forma por escrito, los tenedores del copyright y/u otras partes proporcionan el programa «tal cual», sin garantía de ninguna clase, bien expresa o implícita, con inclusión, pero sin limitación a las garantías mercantiles implícitas o a la conveniencia para un propósito particular. Cualquier riesgo referente a la calidad y prestaciones del programa es asumido por usted. Si se probase que el Programa es defectuoso, asume el coste de cualquier servicio, reparación o corrección.
   13. En ningún caso, salvo que lo requiera la legislación aplicable o haya sido acordado por escrito, ningún tenedor del copyright ni ninguna otra parte que modifique y/o redistribuya el Programa según se permite en esta Licencia será responsable ante usted por daños, incluyendo cualquier daño general, especial, incidental o resultante producido por el uso o la imposibilidad de uso del Programa (con inclusión, pero sin limitación a la pérdida de datos o a la generación incorrecta de datos o a pérdidas sufridas por usted o por terceras partes o a un fallo del Programa al funcionar en combinación con cualquier otro programa), incluso si dicho tenedor u otra parte ha sido advertido de la posibilidad de dichos daños.</licence>
 
-	<destination_folder>Adobe/Photoshop</destination_folder>
-	<shortcut>true</shortcut>
+	<destination_folder>Adobe|Photoshop</destination_folder>
+	<desktop_shortcut>true</desktop_shortcut>
+    <programs_shortcut>true</programs_shortcut>
 	
 	<files>
 		<file>ps.exe</file>

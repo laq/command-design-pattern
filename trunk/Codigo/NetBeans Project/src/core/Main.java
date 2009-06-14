@@ -99,6 +99,7 @@ public class Main {
     private static SetupData loadSetupData() throws ParserConfigurationException, SAXException, IOException, XMLParseException
     {
         DocumentBuilderFactory dbf;
+        String osPathSeparator;
         SetupData setupData;
         DocumentBuilder db;
         Document document;
@@ -110,7 +111,8 @@ public class Main {
         Node text;
         int i;
         int n;
-        
+
+        osPathSeparator = System.getProperty("file.separator");
         setupXML = new File("setup.xml");
 
         dbf = DocumentBuilderFactory.newInstance();
@@ -168,6 +170,7 @@ public class Main {
         if(text != null && text.getNodeType() == Node.TEXT_NODE)
         {
             value = text.getNodeValue();
+            value = value.replace("|", osPathSeparator);
             setupData.setDestinationFolder(value);
         }
         else
@@ -175,30 +178,74 @@ public class Main {
             throw new XMLParseException("Se esperaba un valor de texto para la etiqueta 'destination_folder'");
         }
 
-        // Acceso directo
-        nodes = document.getElementsByTagName("shortcut");
-        if(nodes.getLength() != 1)
+        // Acceso directo en el escritorio
+        nodes = document.getElementsByTagName("desktop_shortcut");
+        if(nodes.getLength() > 1)
         {
-            throw new XMLParseException("Falta, o hay duplicados de la etiqueta obligatoria 'shortcut'");
-        }
-
-        node = nodes.item(0);
-        text = node.getFirstChild();
-        if(text != null && text.getNodeType() == Node.TEXT_NODE)
-        {
-            value = text.getNodeValue();
-            if(value.equals("true"))
-                setupData.setShortcut(true);
-
-            else if(value.equals("false"))
-                setupData.setShortcut(false);
-
-            else
-                throw new XMLParseException("Valor inválido para la etiqueta 'shortcut' : '" + value + "'");
+            throw new XMLParseException("Hay duplicados de la etiqueta 'desktop_shortcut'");
         }
         else
         {
-            throw new XMLParseException("Se esperaba un valor de texto para la etiqueta 'shortcut'");
+            if(nodes.getLength() == 0)
+            {
+                setupData.setDesktopShortcut(false);
+            }
+            else
+            {
+                node = nodes.item(0);
+                text = node.getFirstChild();
+                if(text != null && text.getNodeType() == Node.TEXT_NODE)
+                {
+                    value = text.getNodeValue();
+                    if(value.equals("true"))
+                        setupData.setDesktopShortcut(true);
+
+                    else if(value.equals("false"))
+                        setupData.setDesktopShortcut(false);
+
+                    else
+                        throw new XMLParseException("Valor inválido para la etiqueta 'desktop_shortcut' : '" + value + "'");
+                }
+                else
+                {
+                    throw new XMLParseException("Se esperaba un valor de texto para la etiqueta 'desktop_shortcut'");
+                }
+            }
+        }
+
+        // Acceso directo en el menú de programas
+        nodes = document.getElementsByTagName("programs_shortcut");
+        if(nodes.getLength() > 1)
+        {
+            throw new XMLParseException("Hay duplicados de la etiqueta 'programs_shortcut'");
+        }
+        else
+        {
+            if(nodes.getLength() == 0)
+            {
+                setupData.setProgramsShortcut(false);
+            }
+            else
+            {
+                node = nodes.item(0);
+                text = node.getFirstChild();
+                if(text != null && text.getNodeType() == Node.TEXT_NODE)
+                {
+                    value = text.getNodeValue();
+                    if(value.equals("true"))
+                        setupData.setProgramsShortcut(true);
+
+                    else if(value.equals("false"))
+                        setupData.setProgramsShortcut(false);
+
+                    else
+                        throw new XMLParseException("Valor inválido para la etiqueta 'programs_shortcut' : '" + value + "'");
+                }
+                else
+                {
+                    throw new XMLParseException("Se esperaba un valor de texto para la etiqueta 'programs_shortcut'");
+                }
+            }
         }
 
         // Archivos
@@ -223,6 +270,7 @@ public class Main {
                 if(text != null && text.getNodeType() == Node.TEXT_NODE)
                 {
                     value = text.getNodeValue();
+                    value = value.replace("|", osPathSeparator);
                     setupData.getFilesToCopy().add(value);
                 }
                 else
