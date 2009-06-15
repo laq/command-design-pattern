@@ -44,9 +44,10 @@ public class CrearAccesoDirectoWindowsTest {
     @Test
     public void testExecute() throws Exception {
         System.out.println("execute");
-        CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("pinpon",new File("C:\\hola"),true,true);
+  //      CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("pinpon",new File("C:\\hola"),true,true);
 
-        instance.execute();
+    //    instance.execute();
+        testBoth();
         
         //fail("The test case is a prototype.");
     }
@@ -57,10 +58,21 @@ public class CrearAccesoDirectoWindowsTest {
     @Test
     public void testUndo() throws Exception {
         System.out.println("undo");
-        CrearAccesoDirectoWindows instance = null;
+//        CrearAccesoDirectoWindows instance = null;
         //instance.undo();
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        // review the generated test code and remove the default call to fail.
+    }
+
+    public void testBoth(){
+                 String notepad = "C:\\Archivos de programa\\Notepad++\\notepad++.exe";
+        CrearAccesoDirectoWindows instance = new CrearAccesoDirectoWindows("SuperNotepad", new File(notepad),true,true);
+        try {
+            instance.execute();
+            Thread.sleep(1000);
+            instance.undo();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
