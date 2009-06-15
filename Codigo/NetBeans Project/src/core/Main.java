@@ -20,6 +20,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -84,6 +85,8 @@ public class Main {
                     "instalación. Por favor contacte al fabricante de la apliación. La siguiente es la información detallada\n" +
                     "del error:\n\n" + xmlPEx.getMessage() + "\n\nLa instalación no puede continuar", "¡Ha ocurrido un error!",
                     JOptionPane.ERROR_MESSAGE);
+
+            wiz.dispose();
         }
     }
 
@@ -99,12 +102,14 @@ public class Main {
     private static SetupData loadSetupData() throws ParserConfigurationException, SAXException, IOException, XMLParseException
     {
         DocumentBuilderFactory dbf;
+        NamedNodeMap attributes;
         String osPathSeparator;
         SetupData setupData;
         DocumentBuilder db;
         Document document;
         NodeList nodes;
         NodeList files;
+        Node attribute;
         File setupXML;
         String value;
         Node node;
@@ -193,10 +198,11 @@ public class Main {
             else
             {
                 node = nodes.item(0);
-                text = node.getFirstChild();
-                if(text != null && text.getNodeType() == Node.TEXT_NODE)
+                attributes = node.getAttributes();
+                attribute = attributes.getNamedItem("option");
+                if(attribute != null)
                 {
-                    value = text.getNodeValue();
+                    value = attribute.getNodeValue();
                     if(value.equals("true"))
                         setupData.setDesktopShortcut(true);
 
@@ -204,7 +210,19 @@ public class Main {
                         setupData.setDesktopShortcut(false);
 
                     else
-                        throw new XMLParseException("Valor inválido para la etiqueta 'desktop_shortcut' : '" + value + "'");
+                        throw new XMLParseException("Valor inválido para el atributo 'option' de la etiqueta 'desktop_shortcut' : '" + value + "'");
+                }
+                else
+                {
+                    throw new XMLParseException("No se proporcionó el atributo obligatorio 'option' de la etiqueta 'desktop_shortcut'");
+                }
+
+                text = node.getFirstChild();
+                if(text != null && text.getNodeType() == Node.TEXT_NODE)
+                {
+                    value = text.getNodeValue();
+                    value = value.replace("|", osPathSeparator);
+                    setupData.setDesktopShortcutDestination(value);
                 }
                 else
                 {
@@ -226,12 +244,13 @@ public class Main {
                 setupData.setProgramsShortcut(false);
             }
             else
-            {
+            {               
                 node = nodes.item(0);
-                text = node.getFirstChild();
-                if(text != null && text.getNodeType() == Node.TEXT_NODE)
+                attributes = node.getAttributes();
+                attribute = attributes.getNamedItem("option");
+                if(attribute != null)
                 {
-                    value = text.getNodeValue();
+                    value = attribute.getNodeValue();
                     if(value.equals("true"))
                         setupData.setProgramsShortcut(true);
 
@@ -239,7 +258,19 @@ public class Main {
                         setupData.setProgramsShortcut(false);
 
                     else
-                        throw new XMLParseException("Valor inválido para la etiqueta 'programs_shortcut' : '" + value + "'");
+                        throw new XMLParseException("Valor inválido para el atributo 'option' de la etiqueta 'programs_shortcut' : '" + value + "'");
+                }
+                else
+                {
+                    throw new XMLParseException("No se proporcionó el atributo obligatorio 'option' de la etiqueta 'programs_shortcut'");
+                }
+
+                text = node.getFirstChild();
+                if(text != null && text.getNodeType() == Node.TEXT_NODE)
+                {
+                    value = text.getNodeValue();
+                    value = value.replace("|", osPathSeparator);
+                    setupData.setDesktopShortcutDestination(value);
                 }
                 else
                 {

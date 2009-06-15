@@ -22,8 +22,14 @@ public class SetupData
     /** Si se debe dar al usuario la opción de crear un acceso directo en el escritorio */
     private boolean desktopShortcut;
 
+    /** El archivo de destino del acceso directo del escritorio */
+    private String desktopShortcutDestination;
+
     /** Si se debe dar al usuario la opción de crear un acceso directo en el menú de programas */
     private boolean programsShortcut;
+
+    /** El archivo de destino del acceso directo del menú de programas */
+    private String programsShortcutDestination;
     
     /** La lista de archivos para copiar */
     List<String> filesToCopy;
@@ -131,4 +137,38 @@ public class SetupData
      */
     
     public boolean getShortcut() { return desktopShortcut || programsShortcut; }
+
+    /** El archivo al cual debe apuntar el acceso directo del escritorio.
+     *
+     *  @return El nombre del archivo.
+     */
+
+    public String getDesktopShortcutDestination() { return desktopShortcutDestination; }
+
+    /** Establece el nombre del archivo al cual debe apuntar el acceso directo del
+     *  escritorio.
+     *
+     *  @param desktopShortcutDestination El nombre del archivo.
+     */
+    
+    public void setDesktopShortcutDestination(String desktopShortcutDestination) {
+        this.desktopShortcutDestination = desktopShortcutDestination;
+    }
+
+    /** El archivo al cual debe apuntar el acceso directo del menú de programas.
+     *
+     * @return El nombre del archivo
+     */
+
+    public String getProgramsShortcutDestination() { return programsShortcutDestination; }
+
+    /** Establece el nombre del archivo al cual debe apuntar el acceso directo
+     *  del grupo de programas.
+     *
+     *  @param programsShortcutDestination El nombre del archivo
+     */
+    
+    public void setProgramsShortcutDestination(String programsShortcutDestination) {
+        this.programsShortcutDestination = programsShortcutDestination;
+    }
 }

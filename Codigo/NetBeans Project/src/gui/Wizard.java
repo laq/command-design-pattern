@@ -13,6 +13,11 @@ package gui;
 
 import core.SetupData;
 
+import gui.helpers.NoParentOrSelfFileFilter;
+
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /** Ventana principal del asistente de instalación.
  *
  *  @author Sergio
@@ -89,7 +94,12 @@ public class Wizard extends javax.swing.JFrame {
         }
 
         this.location.setDestinationFolder(destinationFolder);
-        
+
+        if(setupData.getShortcut())
+        {
+            this.shortcut.setDesktopShortcutVisible(setupData.getDesktopShortcut());
+            this.shortcut.setProgramsShortcutVisible(setupData.getProgramsShortcut());
+        }
     }
 
     /** This method is called from within the constructor to
@@ -200,6 +210,11 @@ public class Wizard extends javax.swing.JFrame {
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
 
+        File destination;
+        int selectedOption;
+        String[] directoryContents;
+        NoParentOrSelfFileFilter fileFilter;
+        
         switch(currentState)
         {
             case Welcome:
@@ -230,6 +245,35 @@ public class Wizard extends javax.swing.JFrame {
                 break;
 
             case Location:
+
+               if(location.getDestinationFolder().trim().length() == 0)
+               {
+                   JOptionPane.showMessageDialog(this, "Por favor seleccione una ubicación para la instalación", "¡Hay un problema!", JOptionPane.WARNING_MESSAGE);
+                   return;
+               }
+
+               destination = new File(location.getDestinationFolder());
+               if(destination.exists() == false)
+               {
+                   selectedOption = JOptionPane.showConfirmDialog(this, "El directorio de destino no existe. ¿Desea crearlo?", "Directorio de Destino Inexistente", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                   if(selectedOption == JOptionPane.NO_OPTION)
+                       return;
+               }
+               else
+               {
+                   if(destination.isDirectory())
+                   {
+                       fileFilter = new NoParentOrSelfFileFilter();
+                       directoryContents = destination.list(fileFilter);
+                       if(directoryContents.length > 0)
+                       {
+                           selectedOption = JOptionPane.showConfirmDialog(this, "El directorio de destino no está vacio. ¿Desea crearlo?", "Directorio de Destino no Vacio", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                           if(selectedOption == JOptionPane.NO_OPTION)
+                               return;
+                       }
+                   }
+               }
+
                 backPanel.removeAll();
 
                 if(setupData.getShortcut())
