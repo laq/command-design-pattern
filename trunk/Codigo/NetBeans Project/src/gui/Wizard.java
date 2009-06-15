@@ -11,11 +11,23 @@
 
 package gui;
 
+import commands.Command;
+import commands.CopiarArchivo;
+import commands.CrearCarpeta;
+import commands.CrearAccesoDirecto;
+import commands.CrearAccesoDirectoLinux;
+import commands.CrearAccesoDirectoWindows;
+
 import core.SetupData;
 
 import gui.helpers.NoParentOrSelfFileFilter;
+import gui.helpers.SetupThread;
 
 import java.io.File;
+
+import java.util.Vector;
+import java.util.Iterator;
+
 import javax.swing.JOptionPane;
 
 /** Ventana principal del asistente de instalación.
@@ -28,7 +40,12 @@ public class Wizard extends javax.swing.JFrame {
         Welcome, Licence, Location, Shortcut, Copying, Finished;
     }
 
+    private enum HostSystem{
+        Windows, Linux, Other;
+    }
+
     private WizardState currentState;
+    private HostSystem hostSystem;
 
     private WelcomePanel welcome;
     private LicencePanel licence;
@@ -38,9 +55,16 @@ public class Wizard extends javax.swing.JFrame {
     private FinishedPanel finished;
 
     private SetupData setupData;
+    private SetupThread setupThread;
+    
+    private boolean errorOcurred = false;
+    private boolean canceled = false;
     
     /** Creates new form WizardWelcome */
     public Wizard() {
+        
+        String osName;
+
         initComponents();
 
         this.setLocationRelativeTo(null);
@@ -56,11 +80,21 @@ public class Wizard extends javax.swing.JFrame {
         back.setVisible((false));
 
         currentState = WizardState.Welcome;
+
+        osName = System.getProperty("os.name");
+        osName = osName.toLowerCase();
+
+        if(osName.startsWith("windows"))
+            hostSystem = HostSystem.Windows;
+
+        else if(osName.startsWith("linux"))
+            hostSystem = HostSystem.Linux;
+
+        else hostSystem = HostSystem.Other;
     }
 
     public void setSetupData(SetupData setupData)
     {
-        String osName;
         String homeFolder;
         String destinationFolder;
         String osPathSeparator;
@@ -77,13 +111,10 @@ public class Wizard extends javax.swing.JFrame {
             this.licence.setLicence(setupData.getLicence());
         }
 
-        osName = System.getProperty("os.name");
-        osName = osName.toLowerCase();
-
-        if(osName.startsWith("windows"))
+        if(hostSystem == HostSystem.Windows)
             destinationFolder = "C:\\Archivos de Programa\\" + setupData.getDestinationFolder();
 
-        else if(osName.startsWith("linux"))
+        else if(hostSystem == HostSystem.Linux)
             destinationFolder = "/usr/local/share/" + setupData.getDestinationFolder();
 
         else
@@ -100,6 +131,115 @@ public class Wizard extends javax.swing.JFrame {
             this.shortcut.setDesktopShortcutVisible(setupData.getDesktopShortcut());
             this.shortcut.setProgramsShortcutVisible(setupData.getProgramsShortcut());
         }
+    }
+
+    /** Prepara la ejecución de la instalación.
+     *
+     *  @return Un Vector con la secuencia de comandos para la instlaación
+     */
+
+    private Vector prepareInstallation()
+    {
+        Iterator<String> filesToCopyIterator;
+        Vector<Command> commands;
+        File folderToCreate;
+        String fileToCopy;
+        File destination;
+
+        CrearAccesoDirecto accesoDirecto;
+        CopiarArchivo copiarArchivo;
+        CrearCarpeta crearCarpeta;
+
+        String shortcutName;
+        boolean desktopShortcut;
+        boolean programsShortcut;
+        
+        File shortcutDestination;
+        File sourceFile;
+        File destFile;
+        
+        copying.setStatus("Preparando secuencia de comandos para la instalación...");
+        destination = new File(location.getDestinationFolder());
+        commands = new Vector<Command>();
+
+        if(!destination.exists())
+        {
+            folderToCreate = destination;
+            while(!folderToCreate.exists())
+            {
+                crearCarpeta = new CrearCarpeta(folderToCreate);
+                commands.add(0, crearCarpeta);
+
+                folderToCreate = folderToCreate.getParentFile();
+            }
+        }
+
+        filesToCopyIterator = setupData.getFilesToCopy().iterator();
+        while(filesToCopyIterator.hasNext())
+        {
+            fileToCopy = filesToCopyIterator.next();
+            sourceFile = new File(fileToCopy);
+            
+            destFile = new File(destination, fileToCopy);
+            copiarArchivo = new CopiarArchivo(sourceFile, destFile);
+            commands.add(copiarArchivo);
+        }
+
+        if(setupData.getShortcut())
+        {
+            shortcutDestination = new File(destination, setupData.getDesktopShortcutDestination());
+            shortcutName = setupData.getApplicationName();
+            desktopShortcut = shortcut.getCreateDesktopShortcut();
+            programsShortcut = shortcut.getCreateProgramsShortcut();
+
+            if(desktopShortcut || programsShortcut)
+            {
+                if(hostSystem == HostSystem.Windows)
+                {
+                    accesoDirecto = new CrearAccesoDirectoWindows(setupData.getApplicationName(), shortcutDestination, desktopShortcut, programsShortcut);
+                    commands.add(accesoDirecto);
+                }
+                else if(hostSystem == HostSystem.Linux)
+                {
+                    accesoDirecto = new CrearAccesoDirectoLinux(setupData.getApplicationName(), shortcutDestination, desktopShortcut, programsShortcut);
+                    commands.add(accesoDirecto);
+                }
+            }
+        }
+
+        return commands;
+    }
+
+    /** Inicia el proceso de instalación. */
+
+    private void startSetup()
+    {
+        Vector<Command> commands;
+        
+        commands = prepareInstallation();
+        setupThread = new SetupThread(commands, copying, this);
+        setupThread.start();
+    }
+
+    /** Este procedimiento lo utiliza el Thread de ejecución de la instalación
+     *  para reportar los errores.
+     *
+     *  @param ex La excepción que fue lanzada.
+     */
+
+    public void reportError(Exception ex)
+    {
+        JOptionPane.showMessageDialog(this, "Se ha producido un error durante la instalación\n\t" + ex.getMessage(), "Error en la instalación", JOptionPane.ERROR_MESSAGE);
+        errorOcurred = true;
+    }
+
+    /** Este procedimiento es llamado por el Thread cuando finaliza */
+    
+    public void threadDone()
+    {
+        // El Thread ha finalizado, eso es equivalente a que el usuario hubiera
+        // hecho clic en el botón finalizar durante el proceso de copia.
+        nextActionPerformed(null);
     }
 
     /** This method is called from within the constructor to
@@ -280,6 +420,7 @@ public class Wizard extends javax.swing.JFrame {
                 {
                     backPanel.add(shortcut);
                     currentState = WizardState.Shortcut;
+                    backPanel.updateUI();
                 }
                 else
                 {
@@ -287,9 +428,10 @@ public class Wizard extends javax.swing.JFrame {
                     currentState = WizardState.Copying;
                     back.setVisible(false);
                     next.setVisible(false);
+
+                    backPanel.updateUI();
+                    startSetup();
                 }
-                
-                backPanel.updateUI();
                 break;
 
             case Shortcut:
@@ -297,16 +439,30 @@ public class Wizard extends javax.swing.JFrame {
                 backPanel.add(copying);
                 backPanel.updateUI();
 
+                currentState = WizardState.Copying;
                 back.setVisible(false);
                 next.setVisible(false);
-                currentState = WizardState.Copying;
+                backPanel.updateUI();
+                startSetup();
                 break;
 
             case Copying:
                 backPanel.removeAll();
                 backPanel.add(finished);
                 backPanel.updateUI();
-                
+
+                if(errorOcurred)
+                {
+                    finished.setText("No se ha podido completar la instalación " +
+                        "debido a un Error. Por favor contacte al proveedor del Software.");
+                }
+
+                if(canceled)
+                {
+                    finished.setText("Ha cancelado la instalación. El programa no ha sido instalado en su computadora.");
+                }
+
+                back.setVisible(false);
                 next.setVisible(true);
                 next.setText("Finalizar");
                 cancel.setVisible(false);
@@ -364,8 +520,20 @@ public class Wizard extends javax.swing.JFrame {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
 
-        this.nextActionPerformed(null);
-        
+        int option;
+        option = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea cancelar la instalación?", "Cancelar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(option == JOptionPane.YES_OPTION)
+        {
+            canceled = true;
+            if(setupThread != null)
+                setupThread.cancel();
+
+            else
+            {
+                currentState = WizardState.Copying;
+                nextActionPerformed(null);
+            }
+        }
     }//GEN-LAST:event_cancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

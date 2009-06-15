@@ -11,15 +11,48 @@
 
 package gui;
 
-/**
+/** El panel que se muestra durante el proceso de instalación.
  *
- * @author Sergio
+ *  @author Sergio
  */
+
 public class CopyingPanel extends javax.swing.JPanel {
 
     /** Creates new form CopyingPanel */
     public CopyingPanel() {
         initComponents();
+    }
+
+    /** Establece el estado para desplegar en la etiqueta.
+     *
+     *  @param status La cadena para desplegar.
+     */
+
+    public void setStatus(String status)
+    {
+        this.status.setText(status);
+    }
+
+    /** Establece la cantidad total de tareas que serán ejecutadas.
+     *
+     *  @param totalTasks La cantidad total de tareas.
+     */
+
+    public void setTotalTasks(int totalTasks)
+    {
+        this.copyingProgress.setMinimum(0);
+        this.copyingProgress.setMaximum(totalTasks);
+    }
+
+    /** Establece la cantidad de tareas que han sido ejecutadas hasta el
+     *  momento.
+     *
+     *  @param progress La cantidad de tareas ejecutadas.
+     */
+
+    public void setCurrentProgress(int progress)
+    {
+        this.copyingProgress.setValue(progress);
     }
 
     /** This method is called from within the constructor to
@@ -33,6 +66,7 @@ public class CopyingPanel extends javax.swing.JPanel {
 
         copyingTip = new javax.swing.JLabel();
         copyingProgress = new javax.swing.JProgressBar();
+        status = new javax.swing.JLabel();
 
         copyingTip.setText("Por favor espere mientras las acciones seleccionadas son realizadas, esto puede tardar varios minutos");
 
@@ -44,7 +78,8 @@ public class CopyingPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(copyingProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
-                    .addComponent(copyingTip))
+                    .addComponent(copyingTip)
+                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -54,7 +89,9 @@ public class CopyingPanel extends javax.swing.JPanel {
                 .addComponent(copyingTip)
                 .addGap(30, 30, 30)
                 .addComponent(copyingProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(status)
+                .addContainerGap(220, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -62,6 +99,7 @@ public class CopyingPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar copyingProgress;
     private javax.swing.JLabel copyingTip;
+    private javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables
 
 }
