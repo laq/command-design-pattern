@@ -40,6 +40,7 @@ public class CrearAccesoDirectoWindowsTest {
 
     /**
      * Test of execute method, of class CrearAccesoDirectoWindows.
+     * @throws Exception
      */
     @Test
     public void testExecute() throws Exception {
@@ -54,6 +55,7 @@ public class CrearAccesoDirectoWindowsTest {
 
     /**
      * Test of undo method, of class CrearAccesoDirectoWindows.
+     * @throws Exception
      */
     @Test
     public void testUndo() throws Exception {
