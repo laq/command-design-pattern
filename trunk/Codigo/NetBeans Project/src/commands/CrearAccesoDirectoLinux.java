@@ -75,4 +75,16 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
         }
     }
 
+    @Override
+    public String toString() {
+        String creando = "";
+        if (isEscritorio()) {
+            creando += " acceso directo al escritorio\n";
+        }
+        if (isMenuProgramas()) {
+            creando += " acceso directo al escritorio\n";
+        }
+        return "Creando: \n "+creando;
+    }
+
 }
