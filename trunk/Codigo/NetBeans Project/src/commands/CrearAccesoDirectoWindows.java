@@ -18,6 +18,8 @@ import java.util.Properties;
  */
 public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
 
+    private File tmp;
+
     public CrearAccesoDirectoWindows(String nombre, File lugarDelAcceso, boolean escritorio, boolean menuProgramas) {
         setNombreDelAcceso(nombre);
         setLugarDondeApunta(lugarDelAcceso);
@@ -29,15 +31,14 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
         Properties p = System.getProperties();
         p.list(System.out);
     }
-
-    public void execute() throws Exception {
+    private void copyNircmd() throws Exception{
         //verProperties();
         //Codigo para copiar el archivo del jar a temporal
         InputStream i = Thread.currentThread().getContextClassLoader().getResourceAsStream("util/nircmd.exe");
         String tempdir = System.getProperty("java.io.tmpdir");
         String fileSep = System.getProperty("file.separator");
         System.out.println(tempdir);
-        File tmp = new File(tempdir + fileSep + "nircmd.exe");
+        tmp = new File(tempdir + fileSep + "nircmd.exe");
         System.out.println(tmp);
         OutputStream os = new FileOutputStream(tmp);
 
@@ -49,7 +50,11 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
             num = i.read(b);
         }
         os.close();
-        String home = System.getProperty("user.home");
+    }
+
+    public void execute() throws Exception {
+        copyNircmd();
+        //String home = System.getProperty("user.home");
 
 
         //nirmcd.exe shortcut "x:\el_nombre_de_programa" "path_donde_se_copiara_el_acceso_directo" "Nombre_nuevo_de_acceso_directo"
@@ -59,16 +64,17 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
         //Luego se ejecuta
         if (isEscritorio()) {
             String destino = "~$folder.desktop$";//tomado de la ayuda de nircmd
-            String ordenEsc =orden+ " \"" + destino + "\" \"" + getNombreDelAcceso() + "\"";
+            String ordenEsc = orden + " \"" + destino + "\" \"" + getNombreDelAcceso() + "\"";
             exec(ordenEsc);
         }
         if (isMenuProgramas()) {
             String destino = "~$folder.programs$";//tomado de la ayuda de nircmd
-            String ordenMen=orden + " \"" + destino + "\" \"" + getNombreDelAcceso() + "\"";
+            String ordenMen = orden + " \"" + destino + "\" \"" + getNombreDelAcceso() + "\"";
             exec(ordenMen);
         }
     }
-    public void exec(String orden) throws Exception {
+
+    private void exec(String orden) throws Exception {
         //Crea el comando
         System.out.println(orden);
         Process p = Runtime.getRuntime().exec(orden);
@@ -83,6 +89,27 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
     }
 
     public void undo() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+         String fileSep = System.getProperty("file.separator");
+        if(tmp==null){
+            copyNircmd();
+        }
+         //String home = System.getProperty("user.home");
+
+        //nirmcd.exe execmd del "~$folder.desktop$\calc.lnk"
+        //Se crea la orden con el .exe la orden y la direccion del programa
+        String orden = "\"" + tmp.getAbsolutePath() + "\" execmd del";
+        //se adiciona el lugar del acceso y el nombre del mismo
+        //Luego se ejecuta
+        if (isEscritorio()) {
+            String destino = "~$folder.desktop$";//tomado de la ayuda de nircmd
+            String ordenEsc = orden + " \"" + destino + fileSep+getNombreDelAcceso() + ".lnk\"";
+            exec(ordenEsc);
+        }
+        if (isMenuProgramas()) {
+            String destino = "~$folder.programs$";//tomado de la ayuda de nircmd
+            String ordenMen =  orden + " \"" + destino + fileSep+getNombreDelAcceso() + ".lnk\"";
+            exec(ordenMen);
+        }
+        
     }
 }
