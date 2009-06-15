@@ -115,14 +115,7 @@ public class CrearAccesoDirectoWindows extends CrearAccesoDirecto {
 
     @Override
     public String toString() {
-        String creando = "";
-        if (isEscritorio()) {
-            creando += " acceso directo al escritorio ";
-        }
-        if (isMenuProgramas()) {
-            creando += " acceso en el menú ";
-        }
-        return "Creando: "+creando;
+        return "Creando accesos directos";
     }
 
 }
