@@ -57,7 +57,19 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
     }
 
     public void undo() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String fileSep= System.getProperty("file.separator");
+        String home = System.getProperty("user.home");
+        String desktop = DesktopFilter.findDesktop(home,fileSep);
+
+         if(isEscritorio()){
+            File link = new File(desktop+fileSep+this.getNombreDelAcceso()+".desktop");
+            link.delete();
+        }
+
+        if(isMenuProgramas()){
+            File link = new File("/usr/share/applications/" + this.getNombreDelAcceso() + ".desktop");
+            link.delete();
+        }
     }
 
 }
