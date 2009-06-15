@@ -50,18 +50,36 @@ autores se comprometen a utilizarla. (Existe otro software de la Free Software
 Foundation que está cubierto por la Licencia Pública General de GNU para
 Bibliotecas). Si quiere, también puede aplicarla a sus propios programas.
 
-Cuando hablamos de software libre, estamos refiriéndonos a libertad, no a precio. Nuestras Licencias Públicas Generales están diseñadas para asegurarnos de que tenga la libertad de distribuir copias de software libre (y cobrar por ese servicio si quiere), de que reciba el código fuente o que pueda conseguirlo si lo quiere, de que pueda modificar el software o usar fragmentos de él en nuevos programas libres, y de que sepa que puede hacer todas estas cosas.
+Cuando hablamos de software libre, estamos refiriéndonos a libertad, no a
+precio. Nuestras Licencias Públicas Generales están diseñadas para asegurarnos
+de que tenga la libertad de distribuir copias de software libre (y cobrar por
+ese servicio si quiere), de que reciba el código fuente o que pueda conseguirlo
+si lo quiere, de que pueda modificar el software o usar fragmentos de él en
+nuevos programas libres, y de que sepa que puede hacer todas estas cosas.
 
-Para proteger sus derechos necesitamos algunas restricciones que prohiban a cualquiera negarle a usted estos derechos o pedirle que renuncie a ellos. Estas restricciones se traducen en ciertas obligaciones que le afectan si distribuye copias del software, o si lo modifica.
+Para proteger sus derechos necesitamos algunas restricciones que prohiban a
+cualquiera negarle a usted estos derechos o pedirle que renuncie a ellos. Estas
+restricciones se traducen en ciertas obligaciones que le afectan si distribuye
+copias del software, o si lo modifica.
 
-Por ejemplo, si distribuye copias de uno de estos programas, sea gratuitamente, o a cambio de una contraprestación, debe dar a los receptores todos los derechos que tiene. Debe asegurarse de que ellos también reciben, o pueden conseguir, el código fuente. Y debe mostrarles estas condiciones de forma que conozcan sus derechos.
+Por ejemplo, si distribuye copias de uno de estos programas, sea gratuitamente,
+o a cambio de una contraprestación, debe dar a los receptores todos los
+derechos que tiene. Debe asegurarse de que ellos también reciben, o pueden
+conseguir, el código fuente. Y debe mostrarles estas condiciones de forma que
+conozcan sus derechos.
 
 Protegemos sus derechos con la combinación de dos medidas:
 
    1. Ponemos el software bajo copyright y
-   2. le ofrecemos esta licencia, que le da permiso legal para copiar, distribuir y/o modificar el software.
+   2. le ofrecemos esta licencia, que le da permiso legal para copiar,
+      distribuir y/o modificar el software.
 
-También, para la protección de cada autor y la nuestra propia, queremos asegurarnos de que todo el mundo comprende que no se proporciona ninguna garantía para este software libre. Si el software se modifica por cualquiera y éste a su vez lo distribuye, queremos que sus receptores sepan que lo que tienen no es el original, de forma que cualquier problema introducido por otros no afecte a la reputación de los autores originales.
+También, para la protección de cada autor y la nuestra propia, queremos
+asegurarnos de que todo el mundo comprende que no se proporciona ninguna
+garantía para este software libre. Si el software se modifica por cualquiera y
+éste a su vez lo distribuye, queremos que sus receptores sepan que lo que
+tienen no es el original, de forma que cualquier problema introducido por otros
+no afecte a la reputación de los autores originales.
 
 Por último, cualquier programa libre está constantemente amenazado por patentes sobre el software. Queremos evitar el peligro de que los redistribuidores de un programa libre obtengan patentes por su cuenta, convirtiendo de facto el programa en propietario. Para evitar esto, hemos dejado claro que cualquier patente debe ser pedida para el uso libre de cualquiera, o no ser pedida.
 
@@ -113,8 +131,8 @@ AUSENCIA DE GARANTÍA
   13. En ningún caso, salvo que lo requiera la legislación aplicable o haya sido acordado por escrito, ningún tenedor del copyright ni ninguna otra parte que modifique y/o redistribuya el Programa según se permite en esta Licencia será responsable ante usted por daños, incluyendo cualquier daño general, especial, incidental o resultante producido por el uso o la imposibilidad de uso del Programa (con inclusión, pero sin limitación a la pérdida de datos o a la generación incorrecta de datos o a pérdidas sufridas por usted o por terceras partes o a un fallo del Programa al funcionar en combinación con cualquier otro programa), incluso si dicho tenedor u otra parte ha sido advertido de la posibilidad de dichos daños.</licence>
 
 	<destination_folder>Adobe|Photoshop</destination_folder>
-	<desktop_shortcut>true</desktop_shortcut>
-    <programs_shortcut>true</programs_shortcut>
+	<desktop_shortcut option="false">ps.exe</desktop_shortcut>
+    <programs_shortcut option="true">ps.exe</programs_shortcut>
 	
 	<files>
 		<file>ps.exe</file>
