@@ -11,6 +11,7 @@ import java.io.File;
  * @author LAQ
  */
 public abstract class CrearAccesoDirecto implements Command {
+
     private String nombreDelAcceso;
     private File lugarDondeApunta;
     private boolean escritorio;
@@ -72,5 +73,15 @@ public abstract class CrearAccesoDirecto implements Command {
         this.menuProgramas = menuProgramas;
     }
 
-   
+    @Override
+    public String toString() {
+        String creando = "";
+        if (isEscritorio()) {
+            creando += " acceso directo al escritorio\n";
+        }
+        if (isMenuProgramas()) {
+            creando += " acceso directo al escritorio\n";
+        }
+        return "Creando: \n "+creando;
+    }
 }

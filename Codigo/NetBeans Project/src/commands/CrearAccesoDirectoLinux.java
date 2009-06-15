@@ -19,7 +19,10 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
 
     /**
      *
-     * @param ejecutable
+     * @param nombre
+     * @param lugar_del_acceso
+     * @param escritorio
+     * @param menuProgramas
      */
     public CrearAccesoDirectoLinux (String nombre, File lugar_del_acceso, boolean escritorio, boolean menuProgramas) {
         setNombreDelAcceso(nombre);

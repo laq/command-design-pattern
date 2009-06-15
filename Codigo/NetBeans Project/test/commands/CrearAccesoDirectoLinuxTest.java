@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package commands;
 
 import java.io.File;
@@ -41,27 +40,29 @@ public class CrearAccesoDirectoLinuxTest {
 
     /**
      * Test of execute method, of class CrearAccesoDirectoLinux.
+     * @throws Exception
      */
-    /*@Test
+    @Test
     public void testExecute() throws Exception {
         System.out.println("execute");
         File f = new File("/usr/bin/rapidsvn");
-        CrearAccesoDirectoLinux instance = new CrearAccesoDirectoLinux("MySVN", f, true, true);
-        try{
-        instance.execute();
-        }catch(IOException ioe){System.out.println("Error por permisos");}
-        // TODO review the generated test code and remove the default call to fail.
-    }*/
+        CrearAccesoDirectoLinux instance = new CrearAccesoDirectoLinux("MySVN", f, false, true);
+        try {
+            instance.execute();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
 
     /**
      * Test of undo method, of class CrearAccesoDirectoLinux.
+     * @throws Exception
      */
     @Test
     public void testUndo() throws Exception {
-        System.out.println("undo");
-        File f = new File("/usr/bin/rapidsvn");
-        CrearAccesoDirectoLinux instance = new CrearAccesoDirectoLinux("MySVN", f, true, true);
-        instance.undo();
+//        System.out.println("undo");
+//        File f = new File("/usr/bin/rapidsvn");
+//        CrearAccesoDirectoLinux instance = new CrearAccesoDirectoLinux("MySVN", f, true, true);
+//        instance.undo();
     }
-
 }
