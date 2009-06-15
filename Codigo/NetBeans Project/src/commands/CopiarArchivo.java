@@ -52,4 +52,9 @@ public class CopiarArchivo implements Command {
         Eliminadora.deleteFile(nombre_archivo_destino);
     }
 
+    @Override
+    public String toString() {
+        return "Copiando archivo " + nombre_archivo_destino + " a " + nombre_archivo_origen;
+    }
+
 }
