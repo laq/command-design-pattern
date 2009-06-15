@@ -51,7 +51,7 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
         }
 
         if(isMenuProgramas()){
-            File link = new File("/usr/share/applications/" + this.getNombreDelAcceso() + ".desktop");
+            File link = new File(home + fileSep + ".local/share/applications/" + this.getNombreDelAcceso() + ".desktop");
             FileOutputStream fop=new FileOutputStream(link);
             fop.write(str.getBytes());
             fop.flush();
@@ -70,7 +70,7 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
         }
 
         if(isMenuProgramas()){
-            File link = new File("/usr/share/applications/" + this.getNombreDelAcceso() + ".desktop");
+            File link = new File(desktop + fileSep + "./local/share/applications/" + this.getNombreDelAcceso() + ".desktop");
             link.delete();
         }
     }
