@@ -67,7 +67,7 @@ public class ShortcutPanel extends javax.swing.JPanel {
         desktopShortcut = new javax.swing.JCheckBox();
         programsShortcut = new javax.swing.JCheckBox();
 
-        shortcutTip.setText("¿Desea crear un acceso directo en el escritorio?");
+        shortcutTip.setText("¿Desea crear accesos directos para la apliación?");
 
         desktopShortcut.setText("Crear acceso directo en el escritorio");
 
