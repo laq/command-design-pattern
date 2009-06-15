@@ -54,7 +54,7 @@ public class CopiarArchivo implements Command {
 
     @Override
     public String toString() {
-        return "Copiando archivo " + nombre_archivo_destino + " a " + nombre_archivo_origen;
+        return "Copiando archivo " + nombre_archivo_origen + " a " + nombre_archivo_destino;
     }
 
 }
