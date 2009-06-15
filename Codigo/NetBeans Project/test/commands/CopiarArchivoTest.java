@@ -44,7 +44,7 @@ public class CopiarArchivoTest {
     @Test
     public void testExecute() throws Exception {
         System.out.println("execute");
-        File src = new File("/home/david/Escritorio/Tareas Pendientes");
+        File src = new File("/home/david/Escritorio/estaciones radio");
         File dest = new File("/home/david/Escritorio/copia_TP");
         CopiarArchivo instance = new CopiarArchivo(src, dest);
         instance.execute();
@@ -60,7 +60,7 @@ public class CopiarArchivoTest {
     @Test
     public void testUndo() throws Exception {
         System.out.println("undo");
-        File src = new File("/home/david/Escritorio/Tareas Pendientes");
+        File src = new File("/home/david/Escritorio/estaciones radio");
         File dest = new File("/home/david/Escritorio/copia_TP");
         CopiarArchivo instance = new CopiarArchivo(src, dest);
         instance.undo();

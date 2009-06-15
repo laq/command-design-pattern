@@ -6,6 +6,7 @@
 package commands;
 
 import java.io.File;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,9 +45,11 @@ public class CrearAccesoDirectoLinuxTest {
     @Test
     public void testExecute() throws Exception {
         System.out.println("execute");
-        File f = new File("/home/david/Escritorio/Tareas Pendientes");
-        CrearAccesoDirectoLinux instance = new CrearAccesoDirectoLinux(f, "hola");
+        File f = new File("/usr/bin/rapidsvn");
+        CrearAccesoDirectoLinux instance = new CrearAccesoDirectoLinux("MySVN", f, true, true);
+        try{
         instance.execute();
+        }catch(IOException ioe){System.out.println("Error por permisos");}
         // TODO review the generated test code and remove the default call to fail.
     }
 

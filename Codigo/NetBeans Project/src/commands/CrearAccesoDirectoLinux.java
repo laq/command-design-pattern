@@ -7,6 +7,7 @@ package commands;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -20,46 +21,39 @@ public class CrearAccesoDirectoLinux extends CrearAccesoDirecto  {
      *
      * @param ejecutable
      */
-    public CrearAccesoDirectoLinux (File ejecutable, String nombre_aplicacion) {
-         this.setLugarDondeApunta(ejecutable);
-         this.setNombreDelAcceso(nombre_aplicacion);
+    public CrearAccesoDirectoLinux (String nombre, File lugar_del_acceso, boolean escritorio, boolean menuProgramas) {
+        setNombreDelAcceso(nombre);
+        setLugarDondeApunta(lugar_del_acceso);
+        setEscritorio(escritorio);
+        setMenuProgramas(menuProgramas);
     }
 
     public void execute() throws IOException{
-        String a = System.getProperty("user.home");
-        System.out.println(a);
-        Process pat;
-        pat = Runtime.getRuntime().exec("env | egrep LANG");
-        BufferedReader Resultset = new BufferedReader(
-                        new InputStreamReader (
-                        pat.getInputStream()));
+        String fileSep= System.getProperty("file.separator");
+        String home = System.getProperty("user.home");
+        String desktop = DesktopFilter.findDesktop(home,fileSep);
 
-        String line;
-        while ((line = Resultset.readLine()) != null) {
-                System.out.println(line);
-                }
-        // verifica existencia de carpeta Escritorio
-        /*File usr_bin = new File ("/usr/bin");
-        File bin = new File ("/bin");
+        String str =
+                "[Desktop Entry]\n"+
+                "Name=" + getNombreDelAcceso() + "\n"+
+                "Type=Application\n"+
+                "Exec=" + this.getLugarDondeApunta().getAbsolutePath();
 
-        File nueva = new File ("/usr/bin/nueva");
+        if(isEscritorio()){
+            File link = new File(desktop+fileSep+this.getNombreDelAcceso()+".desktop");
+            FileOutputStream fop=new FileOutputStream(link);
+            fop.write(str.getBytes());
+            fop.flush();
+            fop.close();
+        }
 
-        Process pat;
-
-        if(usr_bin.exists()){
-            nueva.createNewFile();
-        } else {
-            pat = Runtime.getRuntime().exec("echo $PATH");
-        }*/
-
-        /*BufferedReader Resultset = new BufferedReader(
-                        new InputStreamReader (
-                        pat.getInputStream()));
-
-        String line;
-        while ((line = Resultset.readLine()) != null) {
-                System.out.println(line);
-                }*/
+        if(isMenuProgramas()){
+            File link = new File("/usr/share/applications/" + this.getNombreDelAcceso() + ".desktop");
+            FileOutputStream fop=new FileOutputStream(link);
+            fop.write(str.getBytes());
+            fop.flush();
+            fop.close();
+        }
     }
 
     public void undo() throws Exception {
