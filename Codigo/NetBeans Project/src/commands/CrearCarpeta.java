@@ -36,6 +36,6 @@ public class CrearCarpeta implements Command {
     }
     @Override
     public String toString(){
-        return carpeta.toString();
+        return "Creando: " + carpeta.toString();
     }
 }

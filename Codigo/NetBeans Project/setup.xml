@@ -81,13 +81,28 @@ garantía para este software libre. Si el software se modifica por cualquiera y
 tienen no es el original, de forma que cualquier problema introducido por otros
 no afecte a la reputación de los autores originales.
 
-Por último, cualquier programa libre está constantemente amenazado por patentes sobre el software. Queremos evitar el peligro de que los redistribuidores de un programa libre obtengan patentes por su cuenta, convirtiendo de facto el programa en propietario. Para evitar esto, hemos dejado claro que cualquier patente debe ser pedida para el uso libre de cualquiera, o no ser pedida.
+Por último, cualquier programa libre está constantemente amenazado por patentes
+sobre el software. Queremos evitar el peligro de que los redistribuidores de un
+programa libre obtengan patentes por su cuenta, convirtiendo de facto el
+programa en propietario. Para evitar esto, hemos dejado claro que cualquier
+patente debe ser pedida para el uso libre de cualquiera, o no ser pedida.
 
-Los términos exactos y las condiciones para la copia, distribución y modificación se exponen a continuación.
+Los términos exactos y las condiciones para la copia, distribución y
+modificación se exponen a continuación.
 
 TÉRMINOS Y CONDICIONES PARA LA COPIA, DISTRIBUCIÓN Y MODIFICACIÓN
 
-   1. Esta Licencia se aplica a cualquier programa u otro tipo de trabajo que contenga una nota colocada por el tenedor del copyright diciendo que puede ser distribuido bajo los términos de esta Licencia Pública General. En adelante, «Programa» se referirá a cualquier programa o trabajo que cumpla esa condición y «trabajo basado en el Programa» se referirá bien al Programa o a cualquier trabajo derivado de él según la ley de copyright. Esto es, un trabajo que contenga el programa o una proción de él, bien en forma literal o con modificaciones y/o traducido en otro lenguaje. Por lo tanto, la traducción está incluida sin limitaciones en el término «modificación». Cada concesionario (licenciatario) será denominado «usted».
+   1. Esta Licencia se aplica a cualquier programa u otro tipo de trabajo que
+      contenga una nota colocada por el tenedor del copyright diciendo que
+      puede ser distribuido bajo los términos de esta Licencia Pública General.
+      En adelante, «Programa» se referirá a cualquier programa o trabajo que
+      cumpla esa condición y «trabajo basado en el Programa» se referirá bien
+      al Programa o a cualquier trabajo derivado de él según la ley de
+      copyright. Esto es, un trabajo que contenga el programa o una proción de
+      él, bien en forma literal o con modificaciones y/o traducido en otro
+      lenguaje. Por lo tanto, la traducción está incluida sin limitaciones en
+      el término «modificación». Cada concesionario (licenciatario) será
+      denominado «usted».
 
       Cualquier otra actividad que no sea la copia, distribución o modificación no está cubierta por esta Licencia, está fuera de su ámbito. El acto de ejecutar el Programa no está restringido, y los resultados del Programa están cubiertos únicamente si sus contenidos constituyen un trabajo basado en el Programa, independientemente de haberlo producido mediante la ejecución del programa. El que esto se cumpla, depende de lo que haga el programa.
    2. Usted puede copiar y distribuir copias literales del código fuente del Programa, según lo has recibido, en cualquier medio, supuesto que de forma adecuada y bien visible publique en cada copia un anuncio de copyright adecuado y un repudio de garantía, mantenga intactos todos los anuncios que se refieran a esta Licencia y a la ausencia de garantía, y proporcione a cualquier otro receptor del programa una copia de esta Licencia junto con el Programa.
@@ -131,7 +146,7 @@ AUSENCIA DE GARANTÍA
   13. En ningún caso, salvo que lo requiera la legislación aplicable o haya sido acordado por escrito, ningún tenedor del copyright ni ninguna otra parte que modifique y/o redistribuya el Programa según se permite en esta Licencia será responsable ante usted por daños, incluyendo cualquier daño general, especial, incidental o resultante producido por el uso o la imposibilidad de uso del Programa (con inclusión, pero sin limitación a la pérdida de datos o a la generación incorrecta de datos o a pérdidas sufridas por usted o por terceras partes o a un fallo del Programa al funcionar en combinación con cualquier otro programa), incluso si dicho tenedor u otra parte ha sido advertido de la posibilidad de dichos daños.</licence>
 
 	<destination_folder>Adobe|Photoshop</destination_folder>
-	<desktop_shortcut option="false">ps.exe</desktop_shortcut>
+	<desktop_shortcut option="true">ps.exe</desktop_shortcut>
     <programs_shortcut option="true">ps.exe</programs_shortcut>
 	
 	<files>
