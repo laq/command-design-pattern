@@ -49,7 +49,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="shortcutTip">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xbf;Desea crear un acceso directo en el escritorio?"/>
+        <Property name="text" type="java.lang.String" value="&#xbf;Desea crear accesos directos para la apliaci&#xf3;n?"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="desktopShortcut">
