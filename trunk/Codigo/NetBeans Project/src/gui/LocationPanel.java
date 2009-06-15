@@ -11,6 +11,10 @@
 
 package gui;
 
+import java.io.File;
+
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Sergio
@@ -28,6 +32,13 @@ public class LocationPanel extends javax.swing.JPanel {
      */
 
     public void setDestinationFolder(String folder) { this.locationText.setText(folder); }
+
+    /** Devuelve la ruta de acceso seleccionada por el usuario.
+     *
+     *  @return La ruta de acceso seleccionada.
+     */
+
+    public String getDestinationFolder() { return this.locationText.getText(); }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -80,6 +91,16 @@ public class LocationPanel extends javax.swing.JPanel {
 
     private void locationBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationBrowseActionPerformed
 
+        int dialogOption;
+        
+        JFileChooser chooser;
+        chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File(locationText.getText()));
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        dialogOption = chooser.showOpenDialog(this);
+
+        if(dialogOption == JFileChooser.APPROVE_OPTION)
+            locationText.setText(chooser.getSelectedFile().getAbsolutePath());
 }//GEN-LAST:event_locationBrowseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

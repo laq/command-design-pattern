@@ -22,6 +22,38 @@ public class ShortcutPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    /** Establece un valor booleano que determina si se debe mostrar la casilla
+     *  de acceso directo en el escritorio.
+     *
+     *  @param visible El valor booleano
+     */
+
+    public void setDesktopShortcutVisible(boolean visible) { desktopShortcut.setVisible(visible); }
+
+    /** Establece un valor booleano que determina si se debe mostrar la casilla
+     *  de acceso directo en el menú de programas.
+     *
+     *  @param visible El valor booleano.
+     */
+
+    public void setProgramsShortcutVisible(boolean visible) { programsShortcut.setVisible(visible); }
+
+    /** Devuelve un valor booleano que determina si el usuario ha decidido que
+     *  quiere crear un acceso directo en el escritoio.
+     *
+     *  @return Un valor booleano.
+     */
+
+    public boolean getCreateDesktopShortcut() { return desktopShortcut.isSelected(); }
+
+    /** Devuelve un valor booleano que determina si el usuario ha decidido que
+     *  quiere crear un acceso directo en el menú de programas.
+     *
+     *  @return Un valor booleano
+     */
+
+    public boolean getCreateProgramsShortcut() { return programsShortcut.isSelected(); }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
