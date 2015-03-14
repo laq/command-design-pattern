@@ -1,0 +1,1 @@
+A simple project to illustatre the use of the Command design pattern. It was created for the "Programación Avanzada en Java" assignment on 2009-I
